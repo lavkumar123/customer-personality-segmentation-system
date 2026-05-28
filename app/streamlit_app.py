@@ -5,6 +5,130 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
+#custom Design
+
+st.markdown("""
+<style>
+
+/* Main Background */
+.stApp {
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #312e81
+    );
+    color: white;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(
+        180deg,
+        #111827,
+        #1e3a8a
+    );
+    border-right: 2px solid #3b82f6;
+}
+
+/* Titles */
+h1, h2, h3 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Metric Cards */
+[data-testid="metric-container"] {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.stButton > button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(
+        90deg,
+        #7c3aed,
+        #2563eb
+    );
+}
+
+/* Input Boxes */
+.stNumberInput input,
+.stTextInput input,
+.stSelectbox div {
+    background-color: rgba(255,255,255,0.08) !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+/* Dataframe */
+[data-testid="stDataFrame"] {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Success Box */
+.stSuccess {
+    background-color: rgba(34,197,94,0.2);
+    border: 1px solid #22c55e;
+    border-radius: 12px;
+    color: white;
+}
+
+/* Charts */
+canvas {
+    border-radius: 15px;
+}
+
+/* Download Button */
+.stDownloadButton > button {
+    background: linear-gradient(
+        90deg,
+        #f59e0b,
+        #ef4444
+    );
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+/* Section Containers */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Smooth Animations */
+* {
+    transition: all 0.3s ease;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 # Page Config
 st.set_page_config(
     page_title="Customer Segmentation System",
@@ -12,7 +136,7 @@ st.set_page_config(
 )
 
 # Title
-st.title("Customer Personality Segmentation System")
+st.title("✨ Customer Personality Segmentation System")
 
 # Load Dataset
 df = pd.read_csv("data/customer_segments.csv")
@@ -71,22 +195,22 @@ filtered_df = df[
 col1, col2, col3 = st.columns(3)
 
 col1.metric(
-    "Customers",
+    "👥 Customers",
     len(filtered_df)
 )
 
 col2.metric(
-    "Average Income",
+    "💰 Average Income",
     round(filtered_df['Income'].mean(), 2)
 )
 
 col3.metric(
-    "Average Spending",
+    "🛒 Average Spending",
     round(filtered_df['Total_Spending'].mean(), 2)
 )
 
 # Dataset Preview
-st.subheader("Filtered Customer Dataset")
+st.subheader("📁 Filtered Customer Dataset")
 
 st.dataframe(filtered_df.head())
 
@@ -122,7 +246,7 @@ with col5:
     st.pyplot(fig2)
 
 # Cluster Summary
-st.subheader("Segment Summary")
+st.subheader("📊 Segment Summary")
 
 summary = filtered_df[
     [
@@ -145,7 +269,7 @@ st.download_button(
     mime='text/csv'
 )
 
-st.header("Predict Customer Segment")
+st.header("🤖 Predict Customer Segment")
 
 income = st.number_input(
     "Enter Income",
